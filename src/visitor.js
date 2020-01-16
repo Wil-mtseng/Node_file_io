@@ -14,9 +14,10 @@ class Visitor {
     // Save function
     save() {
 
+        // Create file in json format
         fs.writeFile(`visitor_${this.fullName}.json`, JSON.stringify(this, null, 4), (err) => {
             if (err) throw err;
-            console.log('JSON file saved');
+            console.log('JSON file saved :)');
         });
     }
 
@@ -32,20 +33,27 @@ function load(fullName) {
 
     fs.readFile('visitor_' + name + '.json', 'utf8', (err, data) => {
         if (err) throw err;
-
         console.log(data);
     });
+
 }
 
-const visitor1 = new Visitor("wilfred_ratala", 33, "21 Nov", "11:20am", "Why mara vele?", "Nothi");
-
-const visitor2 = new Visitor("wil_green", 33, "21/11/1985", "11:20pm", "Why mara vele yeh?", "Nothi");
 
 
-visitor1.save();
+const alice = new Visitor("alice_cooper", 71, "1948 Feb 4", "08:20am", "American rock star", "Wilfred");
+const bob = new Visitor("bob_marley", 36, "1945 Feb 6", "08:20am", "I am a raggae poineer!", "Wilfred");
+const charlie = new Visitor("charlie_sheen", 55, "1965 Sept 3", "08:20am", "I am an American actor!", "Wilfred");
 
-visitor2.save();
 
-load('Wilfred Ratala');
+alice.save();
+bob.save();
+charlie.save();
 
-load('wil green');
+load('alice cooper');
+load('bob marley');
+load('charlie sheen');
+
+module.exports = {
+    Visitor,
+    load
+};
