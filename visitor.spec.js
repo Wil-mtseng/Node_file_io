@@ -1,22 +1,32 @@
-const Visitor = require("../src/visitor");
-let visitor1 = new Visitor("wilfred_ratala", 33, "21 Nov", "11:20am", "Why mara vele?", "Nothi");
+const { Visitor } = require("../src/visitor.js");
 
-describe("Matches class with instance", () => {
+const fs = require("fs");
 
-    it("match any value", () => {
-        expect(visitor1).toEqual(jasmine.any(Visitor))
+const bob = new Visitor("bob_marley", 36, "1945 Feb 6", "08:20am", "I am a raggae poineer!", "Wilfred");
+
+bob.save();
+
+describe("function", () => {
+
+    it("tests if save() is defined", () => {
+        expect(bob).toBeDefined();
+    });
+
+    it("test if details of instance correlate with the constructor", () => {
+
+        fs.readFile('visitor_bob_marley.json', 'utf8', (err, data) => {
+            if (err) { throw err }
+
+            let dataContent = JSON.parse(data);
+
+            expect(dataContent.fullName).toBe("bob_marley");
+            expect(dataContent.age).toBe(36);
+            expect(dataContent.dateOfVisit).toBe("1945 Feb 6");
+            expect(dataContent.timeOfVisit).toBe("08:20am");
+            expect(dataContent.comments).toBe("I am a raggae poineer!");
+            expect(dataContent.nameOfPersonAssisting).toBe("Wilfred");
+        });
+
+
     });
 });
-
-describe("", function() {
-
-    beforeEach(function() {
-        visitor1 = jasmine.createSpy('visitor1');
-
-        visitor1("wilfred_ratala", 33, "21 Nov", "11:20am", "Why mara vele?", "Nothi");
-    });
-
-    it("tracks that the spy was called", function() {
-        expect(visitor1).toHaveBeenCalled();
-    });
-})
