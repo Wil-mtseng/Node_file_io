@@ -20,9 +20,6 @@ class Visitor {
             console.log('JSON file saved :)');
         });
     }
-
-
-
 };
 
 // Load function
@@ -35,7 +32,6 @@ function load(fullName) {
         if (err) throw err;
         console.log(data);
     });
-
 }
 
 
@@ -54,6 +50,5 @@ load('bob marley');
 load('charlie sheen');
 
 module.exports = {
-    Visitor,
-    load
+    Visitor
 };
