@@ -37,5 +37,7 @@ function load(fullName) {
     });
 
 }
+module.exports = {
+    Visitor}
 
 };
